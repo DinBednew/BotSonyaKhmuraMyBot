@@ -19,6 +19,13 @@ import java.util.List;
 
 public class Bot extends TelegramLongPollingBot {
     public static void main(String[] args) {
+        //-Djava.net.useSystemProxies=true;
+        //System.setProperty("java.net.useSystemProxies", "true");
+/*
+        System.getProperties().put( "proxySet", "true" );
+        System.getProperties().put( "socksProxyHost", "127.0.0.1" );
+        System.getProperties().put( "socksProxyPort", "9150" );
+*/
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {
@@ -38,7 +45,7 @@ public class Bot extends TelegramLongPollingBot {
         sendMessage.setText(text); // устанавливаем этому сообщению текст text(тот который мы отправляли в этот метод)
         try { // непосредственная отправка сообщения
             setButtons(sendMessage); // метод добавляющий клавиатуру и привязывающий ее к сообщению
-            sendMessage(sendMessage); // метод устаревший, но рабочий (почему он устаревший х.з.)
+            execute(sendMessage); // использую execute(sendMessage) (в видео был использован sendMessage(sendMessage), это метод устаревший, но тоже рабочий)
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
@@ -62,7 +69,7 @@ public class Bot extends TelegramLongPollingBot {
                     try {
                         sendMsg(message, Weather.getWeather(message.getText(), model)); // тут отправляем сообщение с погодой, погоду узнаем методом getWeather
                     } catch (IOException e) {
-                        sendMsg(message, "Упс, такой город нахожу я от чего то, сорян..."); // если ошибка, то отправляем сообщение
+                        sendMsg(message, "Упс, такой город не нахожу я от чего то, сорян..."); // если ошибка, то отправляем сообщение
                     }
             }
         }
@@ -70,7 +77,7 @@ public class Bot extends TelegramLongPollingBot {
 
     public void setButtons(SendMessage sendMessage) { // метод который определяет клавиатуру под текстовой панелью
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup(); // создаем (инициализируем клавиатуру
-        sendMessage.setReplyMarkup(replyKeyboardMarkup); // создаем разметку и мередаем ее в replyKeyboardMarkup
+        sendMessage.setReplyMarkup(replyKeyboardMarkup); // создаем разметку и передаем ее в replyKeyboardMarkup
         replyKeyboardMarkup.setSelective(true); // параметр определяющий, что клава доступна для всех пользовоталей
         replyKeyboardMarkup.setResizeKeyboard(true); // автоматом подгонять клаву под размеры
         replyKeyboardMarkup.setOneTimeKeyboard(false); // параметры определяющий, что не надо скрывать клавиатуру после использования
