@@ -1,1 +1,1 @@
-worker: sh target/bin/TimurTeleBot
+worker: sh target/bin/BotSonyaKhmuraMyBot
