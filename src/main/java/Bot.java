@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bot extends TelegramLongPollingBot {
+public class Bot extends TelegramLongPollingBot {  //  можно попробовать с таким классом родителем AbilityBot {
     public static void main(String[] args) {
         //-Djava.net.useSystemProxies=true;
         //System.setProperty("java.net.useSystemProxies", "true");
@@ -26,14 +26,21 @@ public class Bot extends TelegramLongPollingBot {
         System.getProperties().put( "socksProxyHost", "127.0.0.1" );
         System.getProperties().put( "socksProxyPort", "9150" );
 */
-        ApiContextInitializer.init();
+
+
+/*        ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {
             telegramBotsApi.registerBot(new Bot());
 
-        } catch (TelegramApiRequestException e) {
-            e.printStackTrace();
-        }
+        } catch (TelegramApiRequestException e) {e.printStackTrace();}
+*/
+// новая попытка
+
+
+
+
+
     }
 
     public void sendMsg(Message message, String text) { // что бот будет возвращать на наши сообщения
@@ -62,7 +69,7 @@ public class Bot extends TelegramLongPollingBot {
                     sendMsg(message, "Чем могу помочь, мой Господин?");
                     break;
                 case "/setting": // служебное сообщение
-                    sendMsg(message, "Что будем настраивать, мой Тысяча чертей?");
+                    sendMsg(message, "Что будем настраивать? Тысяча чертей!");
                     break;
 
                 default: // ответ по умолчанию (т.е. ответ на любой другой вопрос)
