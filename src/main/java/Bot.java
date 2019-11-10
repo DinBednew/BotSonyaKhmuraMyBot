@@ -28,13 +28,13 @@ public class Bot extends TelegramLongPollingBot {  //  можно попробо
 */
 
 
-/*        ApiContextInitializer.init();
+        ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {
             telegramBotsApi.registerBot(new Bot());
 
         } catch (TelegramApiRequestException e) {e.printStackTrace();}
-*/
+
 // новая попытка
 
 
